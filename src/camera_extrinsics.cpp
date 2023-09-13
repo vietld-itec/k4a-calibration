@@ -88,7 +88,7 @@ bool ExtrinsicsCalibration::CalculateExtrinsics(
         cout  <<"No images provided to registration"<< endl;
         return false;
     }
-    open3d::utility::SetVerbosityLevel(open3d::utility::VerbosityLevel::Debug);
+    //open3d::utility::SetVerbosityLevel(open3d::utility::VerbosityLevel::Debug);
 
     const int camera_count = static_cast<int>( frames.size() );
     output.resize(camera_count);
