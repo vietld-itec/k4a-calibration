@@ -6,7 +6,8 @@
 #include <Eigen/Eigen>
 
 #include <apriltag.h>
-#include <tagStandard41h12.h>
+//#include <tagStandard41h12.h>
+#include <tag16h5.h>
 #include <apriltag_pose.h>
 #include <opencv2/aruco/charuco.hpp>
 
@@ -133,7 +134,8 @@ class ExtrinsicsCalibration
 
         ExtrinsicsCalibration()
         {
-            tf = tagStandard41h12_create();
+            //tf = tagStandard41h12_create();
+            tf = tag16h5_create();
             td = apriltag_detector_create();
             apriltag_detector_add_family_bits(td, tf, 1);
             td->quad_decimate = 1.f;
@@ -149,7 +151,8 @@ class ExtrinsicsCalibration
 
         ~ExtrinsicsCalibration()
         {
-            tagStandard41h12_destroy(tf);
+            //tagStandard41h12_destroy(tf);
+            tag16h5_destroy(tf);
             apriltag_detector_destroy(td);
         }
 
