@@ -3,6 +3,8 @@
 #include <fstream>
 #include <experimental/filesystem>
 
+#include <iostream> 
+#include <opencv2/opencv.hpp>
 #include <opencv2/core.hpp>
 #include <opencv2/imgproc.hpp>
 #include <opencv2/calib3d.hpp>
@@ -13,7 +15,7 @@
 #include <open3d/utility/Console.h>
 #include <open3d/io/PointCloudIO.h>
 
-
+using namespace cv; 
 namespace fs = std::experimental::filesystem;
 using namespace std;
 //------------------------------------------------------------------------------
@@ -111,7 +113,26 @@ bool ExtrinsicsCalibration::CalculateExtrinsics(
             .stride = gray.cols,
             .buf = gray.data
         };
+
+            // Display image
+        //cv::imshow("Window Name","a","b", image);
+        // Wait for a key event
+        //cv::waitKey(0);
+
+        // Close OpenCV window
+        //cv::destroyAllWindows();
+        //cv::Mat image = cv::imread
+        // Display the image.
+        //cv::imwrite("grayscale.jpg", gray);
+        //cv::imshow("grayscale image", gray); 
+        //cv::imshow("Display window", orig);
+        //int k = waitKey(0); // Wait for a keystroke in the window
+
+        // Wait for a keystroke.   
+        //cv::waitKey(0);  
         
+        // Destroys all the windows created                         
+        //cv::destroyAllWindows();
         zarray_t* detections = apriltag_detector_detect(td, &orig);
         cout <<"Detected " << zarray_size(detections) << " fiducial markers" << endl;
         bool found = false;
@@ -134,7 +155,7 @@ bool ExtrinsicsCalibration::CalculateExtrinsics(
             info.cy = calibration.Color.cy;
             info.fx = calibration.Color.fx; // mm
             info.fy = calibration.Color.fy;
-            info.tagsize = 0.22f; // in meters
+            info.tagsize = 0.1f; // in meters
 
             apriltag_pose_t pose;
             double err = estimate_tag_pose(&info, &pose);
